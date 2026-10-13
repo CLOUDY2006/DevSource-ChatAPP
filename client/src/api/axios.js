@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-export const API_URL = import.meta.env.VITE_API_URL || '';
+// strip any trailing slash so URLs like https://api.example.com/ still work
+export const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
 
 const api = axios.create({ baseURL: `${API_URL}/api` });
 

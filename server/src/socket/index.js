@@ -3,10 +3,11 @@ import mongoose from 'mongoose';
 import User from '../models/User.js';
 import Message from '../models/Message.js';
 import { verifyToken } from '../utils/token.js';
+import { allowedOrigins } from '../utils/origins.js';
 
 export function initSocket(httpServer) {
   const io = new Server(httpServer, {
-    cors: { origin: process.env.CLIENT_URL, credentials: true },
+    cors: { origin: allowedOrigins(), credentials: true },
   });
 
   // userId -> Set of socket ids (one user can have several tabs/devices open)
